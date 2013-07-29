@@ -1,6 +1,10 @@
 //  CCx.cpp  Class to control the chipcon CCxxxx series transceivers
 //  see http://focus.ti.com/lit/ds/symlink/cc1101.pdf for details on the CC1101
 
+//  Copyright (c) 2013 Chris Stephens <rfbee (at) chuljin.net>
+//  Author: Chris Stephens, based on the original Rfbee v1.1 firmware by Hans Klunder
+//  Version: July 29, 2013
+//
 //  Copyright (c) 2010 Hans Klunder <hans.klunder (at) bigfoot.com>
 //  Author: Hans Klunder, based on the original Rfbee v1.0 firmware by Seeedstudio
 //  Version: May 22, 2010
@@ -19,7 +23,7 @@
 //  License along with this library; if not, write to the Free Software
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-#include "WProgram.h"
+#include "Arduino.h"
 #include "CCx.h"
 #include "CCxCfg.h"
 #include "Spi.h"
@@ -32,45 +36,45 @@ CCX::CCX(){}
 // Power On Reset as described in  19.1.2 of cc1100 datasheet, tried APOR as described in 19.1.1 but that did not work :-(
 void CCX::PowerOnStartUp()
 {
-  DEBUGPRINT() 
+  DEBUGPRINT()
   Spi.mode((1 << SPR1) | (1 << SPR0));//SPICLK=CPU/64
 
-  // start manual Power On Reset 
+  // start manual Power On Reset
   Spi.slaveSelect(HIGH);
   delayMicroseconds(1);
-  
+
   Spi.slaveSelect(LOW);
   delayMicroseconds(10);
-  
+
   Spi.slaveSelect(HIGH);
   delayMicroseconds(41);
-  
+
   Spi.slaveSelect(LOW);
-  
-  // wait for MISO to go low
-  while(digitalRead(MISO_PIN));
-  
-  Spi.transfer(CCx_SRES);
- 
-  DEBUGPRINT("Waiting for CCx to complete POR") 
 
   // wait for MISO to go low
   while(digitalRead(MISO_PIN));
-  
+
+  Spi.transfer(CCx_SRES);
+
+  DEBUGPRINT("Waiting for CCx to complete POR")
+
+  // wait for MISO to go low
+  while(digitalRead(MISO_PIN));
+
   Spi.slaveSelect(HIGH);
-  
-  DEBUGPRINT("CCx POR complete") 
+
+  DEBUGPRINT("CCx POR complete")
 }
 
 byte CCX::Read(byte addr,byte* data)
 {
-  DEBUGPRINT() 
+  DEBUGPRINT()
   byte result;
-  
+
   Spi.slaveSelect(LOW);
   // wait for MISO to go low
   while(digitalRead(MISO_PIN));
-  
+
   result=Spi.transfer(addr | 0x80);
   *data=Spi.transfer(0);
 
@@ -80,13 +84,13 @@ byte CCX::Read(byte addr,byte* data)
 
 byte CCX::ReadBurst(byte addr, byte* dataPtr, byte size)
 {
-  DEBUGPRINT() 
+  DEBUGPRINT()
   byte result;
-  
+
   Spi.slaveSelect(LOW);
   // wait for MISO to go low
   while(digitalRead(MISO_PIN));
-  
+
   result=Spi.transfer(addr | 0xc0);
 
   while(size)
@@ -94,38 +98,38 @@ byte CCX::ReadBurst(byte addr, byte* dataPtr, byte size)
     *dataPtr++ = Spi.transfer(0);
     size--;
   }
-  
+
   Spi.slaveSelect(HIGH);
-  
+
   return result;
 }
 
 byte CCX::Write(byte addr, byte dat)
 {
-  DEBUGPRINT() 
+  DEBUGPRINT()
   byte result;
-  
+
   Spi.slaveSelect(LOW);
   // wait for MISO to go low
   while(digitalRead(MISO_PIN));
-  
+
   result=Spi.transfer(addr);
   result=Spi.transfer(dat);
 
   Spi.slaveSelect(HIGH);
-  
+
   return result;
 }
 
 byte CCX::WriteBurst(byte addr, const byte* dataPtr, byte size)
 {
-  DEBUGPRINT() 
+  DEBUGPRINT()
   byte result;
-  
+
   Spi.slaveSelect(LOW);
   // wait for MISO to go low
   while(digitalRead(MISO_PIN));
-  
+
   result=Spi.transfer(addr | 0x40);
 
   while(size)
@@ -133,32 +137,32 @@ byte CCX::WriteBurst(byte addr, const byte* dataPtr, byte size)
     result = Spi.transfer(*dataPtr++);
     size--;
   }
-  
+
   Spi.slaveSelect(HIGH);
-  
+
   return result;
 }
 
 byte CCX::Strobe(byte addr)
 {
-  DEBUGPRINT() 
+  DEBUGPRINT()
   byte result;
 
   Spi.slaveSelect(LOW);
   // wait for MISO to go low
   while(digitalRead(MISO_PIN));
-  
+
   result=Spi.transfer(addr);
-  
+
   Spi.slaveSelect(HIGH);
-  
+
   return result;
 }
 
 //configure registers of cc1100 making it work in specific mode
 void CCX::Setup(byte configId)
 {
-  DEBUGPRINT() 
+  DEBUGPRINT()
   byte reg;
   byte val;
   if (configId < CCX_NR_OF_CONFIGS)

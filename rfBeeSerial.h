@@ -1,6 +1,10 @@
 //  rfBeeSerial.h serial interface to rfBee
 //  see www.seeedstudio.com for details and ordering rfBee hardware.
 
+//  Copyright (c) 2013 Chris Stephens <rfbee (at) chuljin.net>
+//  Author: Chris Stephens, based on the original Rfbee v1.1 firmware by Hans Klunder
+//  Version: July 29, 2013
+//
 //  Copyright (c) 2010 Hans Klunder <hans.klunder (at) bigfoot.com>
 //  Author: Hans Klunder, based on the original Rfbee v1.0 firmware by Seeedstudio
 //  Version: July 16, 2010
@@ -77,7 +81,7 @@ static char SL_label[] PROGMEM="SL";
 // Supported commands, Commands and parameters in ASCII
 // Example: ATDA14 means: change the RF module Destination Address to 14
 
-typedef int (*AT_Command_Function_t)(); 
+typedef int (*AT_Command_Function_t)();
 
 typedef struct
 {
@@ -101,9 +105,9 @@ static AT_Command_t atCommands[] PROGMEM =
   { CF_label, CONFIG_CONFIG_ID, 1 , 5, true, setCCxConfig },     // select CCx configuration  (0: 915 Mhz - 76.8k, 1: 915 Mhz - 4.8k sensitivity, 2: 915 Mhz - 4.8k low current, 3: 868 Mhz - 76.8k, 4: 868 Mhz - 4.8k sensitivity, 5: 868 Mhz - 4.8k low current )
 // Serial
   { BD_label, CONFIG_BDINDEX, 1 , 3, true, changeUartBaudRate },  // Uart baudrate                    (0: 9600 , 1:19200, 2:38400 ,3:115200)
-  { TH_label, CONFIG_TX_THRESHOLD, 2 , 32, false, 0 },            // TH- threshold of transmitting    (0~32) 
+  { TH_label, CONFIG_TX_THRESHOLD, 2 , 32, false, 0 },            // TH- threshold of transmitting    (0~32)
   { OF_label, CONFIG_OUTPUT_FORMAT, 1 , 3 , false, 0 },           // Output Format                    (0: payload only, 1: source, dest, payload ,  2: payload len, source, dest, payload, rssi, lqi, 3: same as 2, but all except for payload as decimal and separated by comma's )
-// Mode 
+// Mode
   { MD_label, CONFIG_RFBEE_MODE, 1 , 3 , true, setRFBeeMode},    // CCx Working mode                 (0:transceive , 1:transmit , 2:receive, 3:lowpower)
   { O0_label, 0, 0 , 0 , true, setSerialDataMode },              // thats o+ zero, go back to online mode
   { SL_label, 0, 0 , 0 , true, setSleepMode },                   // put the rfBee to sleep
@@ -136,8 +140,8 @@ long baudRateTable[] PROGMEM= {9600,19200,38400,115200};
 // operating modes, used by ATMD
 
 #define TRANSCEIVE_MODE 0
-#define TRANSMIT_MODE 1     
-#define RECEIVE_MODE 2 
+#define TRANSMIT_MODE 1
+#define RECEIVE_MODE 2
 #define LOWPOWER_MODE 3
 
 #ifdef INTERRUPT_RECEIVE

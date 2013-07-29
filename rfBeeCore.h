@@ -1,6 +1,10 @@
 //  rfBeeCore.h core routines for the rfBee
 //  see www.seeedstudio.com for details and ordering rfBee hardware.
 
+//  Copyright (c) 2013 Chris Stephens <rfbee (at) chuljin.net>
+//  Author: Chris Stephens, based on the original Rfbee v1.1 firmware by Hans Klunder
+//  Version: July 29, 2013
+//
 //  Copyright (c) 2010 Hans Klunder <hans.klunder (at) bigfoot.com>
 //  Author: Hans Klunder, based on the original Rfbee v1.0 firmware by Seeedstudio
 //  Version: June 22, 2010

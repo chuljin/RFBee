@@ -1,5 +1,9 @@
 //  Config.h Simple config library for RFbee
 
+//  Copyright (c) 2013 Chris Stephens <rfbee (at) chuljin.net>
+//  Author: Chris Stephens, based on the original Rfbee v1.1 firmware by Hans Klunder
+//  Version: July 29, 2013
+//
 //  Copyright (c) 2010 Hans Klunder <hans.klunder (at) bigfoot.com>
 //  Author: Hans Klunder, based on the original Rfbee v1.0 firmware by Seeedstudio
 //  Version: Aug 27, 2010
@@ -23,11 +27,11 @@
 #ifndef Config_h
 #define Config_h 1
 
-#include "WProgram.h"
+#include "Arduino.h"
 
 // config layout
 #define CONFIG_RFBEE_MARKER       0  // Marker
-#define CONFIG_HW_VERSION         1  // Hardware version  
+#define CONFIG_HW_VERSION         1  // Hardware version
 #define CONFIG_FW_VERSION         2  // Firmware version
 #define CONFIG_DEST_ADDR          3  // Receiver address
 #define CONFIG_MY_ADDR            4  // Sender address

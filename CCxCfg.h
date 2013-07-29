@@ -1,5 +1,9 @@
 //  CCxCfg.h  Configuration settings for the chipcon CCxxxx series transceivers
-// 
+//
+//  Copyright (c) 2013 Chris Stephens <rfbee (at) chuljin.net>
+//  Author: Chris Stephens, based on the original Rfbee v1.1 firmware by Hans Klunder
+//  Version: July 29, 2013
+//
 //  Copyright (c) 2010 Hans Klunder <hans.klunder (at) bigfoot.com>
 //  Author: Hans Klunder, based on the original Rfbee v1.0 firmware by Seeedstudio
 //  Version: August 27, 2010
@@ -135,7 +139,7 @@ static const byte CCx_registerSettings[CCX_NR_OF_CONFIGS][CCX_NR_OF_REGISTERS] P
     0x05,   // PKTCTRL0  Packet automation control.
     0x00,   // ADDR      Device address.
     CCx_PACKT_LEN,    // PKTLEN    Packet length.
-  }, 
+  },
 
 // Chipcon
 // Product = CC1101
@@ -201,8 +205,8 @@ static const byte CCx_registerSettings[CCX_NR_OF_CONFIGS][CCX_NR_OF_REGISTERS] P
     0x05,   // PKTCTRL0  Packet automation control.
     0x00,   // ADDR      Device address.
     CCx_PACKT_LEN,    // PKTLEN    Packet length.
-  }, 
-  
+  },
+
   // Chipcon
 // Product = CC1101
 // Chip version = A   (VERSION = 0x04)
@@ -267,7 +271,7 @@ static const byte CCx_registerSettings[CCX_NR_OF_CONFIGS][CCX_NR_OF_REGISTERS] P
     0x05,   // PKTCTRL0  Packet automation control.
     0x00,   // ADDR      Device address.
     CCx_PACKT_LEN,    // PKTLEN    Packet length.
-  }, 
+  },
 // Chipcon
 // Product = CC1100
 // Chip version = F   (VERSION = 0x03)
@@ -398,7 +402,7 @@ static const byte CCx_registerSettings[CCX_NR_OF_CONFIGS][CCX_NR_OF_REGISTERS] P
     0x05,   // PKTCTRL0  Packet automation control.
     0x00,   // ADDR      Device address.
     CCx_PACKT_LEN,    // PKTLEN    Packet length.
-  }, 
+  },
 
 // Chipcon
 // Product = CC1101
@@ -464,7 +468,7 @@ static const byte CCx_registerSettings[CCX_NR_OF_CONFIGS][CCX_NR_OF_REGISTERS] P
     0x05,   // PKTCTRL0  Packet automation control.
     0x00,   // ADDR      Device address.
     CCx_PACKT_LEN,    // PKTLEN    Packet length.
-  }, 
+  },
 
 };
 

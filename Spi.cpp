@@ -19,7 +19,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include "WProgram.h"
+#include "Arduino.h"
 #include "Spi.h"
 
 //---------- constructor ----------------------------------------------------
@@ -34,11 +34,11 @@ SPI::SPI()
 
   // enable SPI Master, MSB, SPI mode 0, FOSC/4
   mode(0);
-  
+
   digitalWrite(SS_PIN,HIGH);
   digitalWrite(MOSI_PIN,LOW);
   digitalWrite(SCK_PIN,HIGH);
-  
+
 }
 
 //------------------ mode ---------------------------------------------------

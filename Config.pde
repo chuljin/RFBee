@@ -1,6 +1,10 @@
 //  Config.pde Simple config library for rfBee
 //  see www.seeedstudio.com for details and ordering rfBee hardware.
 
+//  Copyright (c) 2013 Chris Stephens <rfbee (at) chuljin.net>
+//  Author: Chris Stephens, based on the original Rfbee v1.1 firmware by Hans Klunder
+//  Version: July 29, 2013
+//
 //  Copyright (c) 2010 Hans Klunder <hans.klunder (at) bigfoot.com>
 //  Author: Hans Klunder, based on the original Rfbee v1.0 firmware by Seeedstudio
 //  Version: August 27, 2010
@@ -44,8 +48,8 @@ void CONFIG::reset()
     EEPROM.write(CONFIG_CONFIG_ID,0x00);
     if (EEPROM.read(CONFIG_HW_VERSION) < 11)
           EEPROM.write(CONFIG_HW_VERSION,11);  // dirty hack to ensure rfBee's without a hardware version get their hardware version set to 1.0
-    EEPROM.write(CONFIG_OUTPUT_FORMAT,0x00);   
-    EEPROM.write(CONFIG_RFBEE_MODE,0x00); 
+    EEPROM.write(CONFIG_OUTPUT_FORMAT,0x00);
+    EEPROM.write(CONFIG_RFBEE_MODE,0x00);
 }
 
 //------------------ get -----------------------------------------------
@@ -67,7 +71,7 @@ int CONFIG::initialized()
  if (( EEPROM.read(CONFIG_RFBEE_MARKER) == CONFIG_RFBEE_MARKER_VALUE) &&
      ( EEPROM.read(CONFIG_FW_VERSION) == FIRMWAREVERSION))
      return OK;
- return ERR; 
+ return ERR;
 }
 //---------- preinstantiate Config object --------------------------------------
 

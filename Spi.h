@@ -22,7 +22,7 @@
 #ifndef Spi_h
 #define Spi_h 1
 
-#include "WProgram.h"
+#include "Arduino.h"
 
 #define SCK_PIN   13
 #define MISO_PIN  12

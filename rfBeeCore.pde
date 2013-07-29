@@ -1,6 +1,10 @@
 //  rfBeeCore.cpp core routines for the rfBee
 //  see www.seeedstudio.com for details and ordering rfBee hardware.
 
+//  Copyright (c) 2013 Chris Stephens <rfbee (at) chuljin.net>
+//  Author: Chris Stephens, based on the original Rfbee v1.1 firmware by Hans Klunder
+//  Version: July 29, 2013
+//
 //  Copyright (c) 2010 Hans Klunder <hans.klunder (at) bigfoot.com>
 //  Author: Hans Klunder, based on the original Rfbee v1.0 firmware by Seeedstudio
 //  Version: July 14, 2010
@@ -84,7 +88,7 @@ int receiveData(byte *rxData, byte *len, byte *srcAddress, byte *destAddress, by
 #endif
   CCx.Read(CCx_RXFIFO,destAddress);
   CCx.Read(CCx_RXFIFO,srcAddress);
-  *len -= 2;  // discard address bytes from payloadLen 
+  *len -= 2;  // discard address bytes from payloadLen
   CCx.ReadBurst(CCx_RXFIFO, rxData,*len);
   CCx.Read(CCx_RXFIFO,rssi);
   *rssi=CCx.RSSIdecode(*rssi);
@@ -109,19 +113,19 @@ void sleepNow(byte mode)
 {
   /* Now is the time to set the sleep mode. In the Atmega8 datasheet
    * http://www.atmel.com/dyn/resources/prod_documents/doc2486.pdf on page 35
-   * there is a list of sleep modes which explains which clocks and 
+   * there is a list of sleep modes which explains which clocks and
    * wake up sources are available in which sleep modus.
    *
    * In the avr/sleep.h file, the call names of these sleep modus are to be found:
    *
    * The 5 different modes are:
-   *     SLEEP_MODE_IDLE         -the least power savings 
+   *     SLEEP_MODE_IDLE         -the least power savings
    *     SLEEP_MODE_ADC
    *     SLEEP_MODE_PWR_SAVE
    *     SLEEP_MODE_STANDBY
    *     SLEEP_MODE_PWR_DOWN     -the most power savings
    *
-   *  the power reduction management <avr/power.h>  is described in 
+   *  the power reduction management <avr/power.h>  is described in
    *  http://www.nongnu.org/avr-libc/user-manual/group__avr__power.html
    */
   DEBUGPRINT()
@@ -129,7 +133,7 @@ void sleepNow(byte mode)
     set_sleep_mode(mode);   // sleep mode is set here
 
     sleep_enable();          // enables the sleep bit in the mcucr register
-  // so sleep is possible. just a safety pin 
+  // so sleep is possible. just a safety pin
 
   power_adc_disable();
   power_spi_disable();
