@@ -42,6 +42,22 @@
 #define CONFIG_CONFIG_ID          9 // Selected CCx configuration
 #define CONFIG_OUTPUT_FORMAT     10 // output format to use
 #define CONFIG_RFBEE_MODE        11 // rfBee operating mode (e.g. transmit/receive/idle)
+#define CONFIG_D0_MODE           12 // GPIO mode for D0 (XBee Pin 20)
+#define CONFIG_D1_MODE           13 // GPIO mode for D1 (XBee Pin 19)
+#define CONFIG_D2_MODE           14 // GPIO mode for D2 (XBee Pin 18)
+#define CONFIG_D3_MODE           15 // GPIO mode for D3 (XBee Pin 17)
+#define CONFIG_D4_MODE           16 // GPIO mode for D4 (XBee Pin 11)
+#define CONFIG_D5_MODE           17 // GPIO mode for D5 (XBee Pin 15/Assoc)
+#define CONFIG_D6_MODE           18 // GPIO mode for D6 (XBee Pin 16)
+#define CONFIG_D7_MODE           19 // GPIO mode for D7 (XBee Pin 12)
+#define CONFIG_D8_MODE           20 // GPIO mode for D8 (XBee Pin 4)
+#define CONFIG_P0_MODE           21 // GPIO mode for P0 (XBee Pin 6/RSSI)
+#define CONFIG_P1_MODE           22 // GPIO mode for P1 (XBee Pin 7)
+#define CONFIG_P2_MODE           23 // GPIO mode for P2 (XBee Pin 8)
+#define CONFIG_P3_MODE           24 // GPIO mode for P3 (XBee Pin 13/On/Sleep)
+#define CONFIG_P0_DUTY           25 // PWM duty for P0 (XBee Pin 6/RSSI/PB1/9)
+#define CONFIG_D2_DUTY           26 // PWM duty for D2 (XBee Pin 18/PD6/6)
+#define CONFIG_D3_DUTY           27 // PWM duty for D3 (XBee Pin 17/PD5/5)
 // marker
 #define CONFIG_RFBEE_MARKER_VALUE 0xAA
 
