@@ -32,6 +32,7 @@
 #include "Config.h"
 #include "CCx.h"
 #include "rfBeeCore.h"
+#include "rfBeeGPIO.h"
 #include <avr/pgmspace.h>
 
 #define BUFFLEN CCx_PACKT_LEN
@@ -53,6 +54,7 @@ int showFirmwareVersion();
 int showHardwareVersion();
 int resetConfig();
 int setSleepMode();
+
 
 
 byte serialData[BUFFLEN+1]; // 1 extra so we can easily add a /0 when doing a debug print ;-)
@@ -77,6 +79,36 @@ static char CF_label[] PROGMEM="CF";
 static char OF_label[] PROGMEM="OF";
 static char O0_label[] PROGMEM="O0";
 static char SL_label[] PROGMEM="SL";
+static char D0_label[] PROGMEM="D0";
+static char D1_label[] PROGMEM="D1";
+static char D2_label[] PROGMEM="D2";
+static char D3_label[] PROGMEM="D3";
+static char D4_label[] PROGMEM="D4";
+static char D5_label[] PROGMEM="D5";
+static char D6_label[] PROGMEM="D6";
+static char D7_label[] PROGMEM="D7";
+static char D8_label[] PROGMEM="D8";
+static char P0_label[] PROGMEM="P0";
+static char P1_label[] PROGMEM="P1";
+static char P2_label[] PROGMEM="P2";
+static char P3_label[] PROGMEM="P3";
+static char M0_label[] PROGMEM="M0";
+static char M2_label[] PROGMEM="M2";
+static char M3_label[] PROGMEM="M3";
+static char I0_label[] PROGMEM="I0";
+static char I1_label[] PROGMEM="I1";
+static char I2_label[] PROGMEM="I2";
+static char I3_label[] PROGMEM="I3";
+static char I4_label[] PROGMEM="I4";
+static char I5_label[] PROGMEM="I5";
+static char I6_label[] PROGMEM="I6";
+static char I7_label[] PROGMEM="I7";
+static char I8_label[] PROGMEM="I8";
+static char IA_label[] PROGMEM="IA";
+static char IB_label[] PROGMEM="IB";
+static char IC_label[] PROGMEM="IC";
+static char ID_label[] PROGMEM="ID";
+static char IE_label[] PROGMEM="IE";
 
 // Supported commands, Commands and parameters in ASCII
 // Example: ATDA14 means: change the RF module Destination Address to 14
@@ -115,7 +147,40 @@ static AT_Command_t atCommands[] PROGMEM =
   { FV_label, 0, 0 , 0 , true, showFirmwareVersion },           // firmware version
   { HV_label, 0, 0 , 0 , true, showHardwareVersion },           // hardware version
 // Miscelaneous
-  { RS_label, 0, 0 , 0 , true, resetConfig }                    // restore default settings
+  { RS_label, 0, 0 , 0 , true, resetConfig },                    // restore default settings
+// GPIO Config
+  { D0_label, CONFIG_D0_MODE, 1, 5, true, setD0Mode },
+  { D1_label, CONFIG_D1_MODE, 1, 5, true, setD1Mode },
+  { D2_label, CONFIG_D2_MODE, 1, 6, true, setD2Mode },
+  { D3_label, CONFIG_D3_MODE, 1, 6, true, setD3Mode },
+  { D4_label, CONFIG_D4_MODE, 1, 5, true, setD4Mode },
+  { D5_label, CONFIG_D5_MODE, 1, 5, true, setD5Mode },
+  { D6_label, CONFIG_D6_MODE, 1, 5, true, setD6Mode },
+  { D7_label, CONFIG_D7_MODE, 1, 5, true, setD7Mode },
+  { D8_label, CONFIG_D8_MODE, 1, 4, true, setD8Mode },
+  { P0_label, CONFIG_P0_MODE, 1, 6, true, setP0Mode },
+  { P1_label, CONFIG_P1_MODE, 1, 4, true, setP1Mode },
+  { P2_label, CONFIG_P2_MODE, 1, 4, true, setP2Mode },
+  { P3_label, CONFIG_P3_MODE, 1, 5, true, setP3Mode },
+// GPIO PWM Output
+  { M0_label, CONFIG_P0_DUTY, 3, 255, true, setP0Duty },
+  { M2_label, CONFIG_D2_DUTY, 3, 255, true, setD2Duty },
+  { M3_label, CONFIG_D3_DUTY, 3, 255, true, setD3Duty },
+// GPIO Input
+  { I0_label, 0, 0, 0, true, printD0Input },
+  { I1_label, 0, 0, 0, true, printD1Input },
+  { I2_label, 0, 0, 0, true, printD2Input },
+  { I3_label, 0, 0, 0, true, printD3Input },
+  { I4_label, 0, 0, 0, true, printD4Input },
+  { I5_label, 0, 0, 0, true, printD5Input },
+  { I6_label, 0, 0, 0, true, printD6Input },
+  { I7_label, 0, 0, 0, true, printD7Input },
+  { I8_label, 0, 0, 0, true, printD8Input },
+  { IA_label, 0, 0, 0, true, printP0Input },
+  { IB_label, 0, 0, 0, true, printP1Input },
+  { IC_label, 0, 0, 0, true, printP2Input },
+  { ID_label, 0, 0, 0, true, printP3Input }/*,
+  { IE_label, 0, 0, 0, true, printD0Input }*/
 };
 
 // error codes and labels

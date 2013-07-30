@@ -50,6 +50,22 @@ void CONFIG::reset()
           EEPROM.write(CONFIG_HW_VERSION,11);  // dirty hack to ensure rfBee's without a hardware version get their hardware version set to 1.0
     EEPROM.write(CONFIG_OUTPUT_FORMAT,0x00);
     EEPROM.write(CONFIG_RFBEE_MODE,0x00);
+	EEPROM.write(CONFIG_D0_MODE,DISABLED);
+	EEPROM.write(CONFIG_D1_MODE,DISABLED);
+	EEPROM.write(CONFIG_D2_MODE,DISABLED);
+	EEPROM.write(CONFIG_D3_MODE,DISABLED);
+	EEPROM.write(CONFIG_D4_MODE,DISABLED);
+	EEPROM.write(CONFIG_D5_MODE,DISABLED);
+	EEPROM.write(CONFIG_D6_MODE,DISABLED);
+	EEPROM.write(CONFIG_D7_MODE,DISABLED);
+	EEPROM.write(CONFIG_D8_MODE,DISABLED);
+	EEPROM.write(CONFIG_P0_MODE,DISABLED);
+	EEPROM.write(CONFIG_P1_MODE,DISABLED);
+	EEPROM.write(CONFIG_P2_MODE,DISABLED);
+	EEPROM.write(CONFIG_P3_MODE,DISABLED);
+	EEPROM.write(CONFIG_P0_DUTY,0);
+	EEPROM.write(CONFIG_D2_DUTY,0);
+	EEPROM.write(CONFIG_D3_DUTY,0);
 }
 
 //------------------ get -----------------------------------------------

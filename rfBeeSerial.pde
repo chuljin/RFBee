@@ -346,6 +346,7 @@ int setCCxConfig(){
   setAddressCheck();
   setPowerAmplifier();
   setRFBeeMode();
+  setGPIO();
   return OK;
 }
 
@@ -402,5 +403,4 @@ int setSleepMode(){
   setSerialDataMode();
   return NOTHING;
 }
-
 
