@@ -346,7 +346,6 @@ int setCCxConfig(){
   setAddressCheck();
   setPowerAmplifier();
   setRFBeeMode();
-  setGPIO();
   return OK;
 }
 

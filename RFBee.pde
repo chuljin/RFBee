@@ -84,6 +84,7 @@ void rfBeeInit(){
 
     CCx.PowerOnStartUp();
     setCCxConfig();
+	setGPIO();
 
     serialMode=SERIALDATAMODE;
     sleepCounter=0;
