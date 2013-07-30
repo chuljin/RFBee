@@ -91,4 +91,6 @@ int printP2Input();
 int printP3Input();
 int printInput(byte,byte);
 int getInput(byte,byte);
+int printAllInputs();
+void getAllInputs(char*);
 #endif

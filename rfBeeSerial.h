@@ -179,8 +179,8 @@ static AT_Command_t atCommands[] PROGMEM =
   { IA_label, 0, 0, 0, true, printP0Input },
   { IB_label, 0, 0, 0, true, printP1Input },
   { IC_label, 0, 0, 0, true, printP2Input },
-  { ID_label, 0, 0, 0, true, printP3Input }/*,
-  { IE_label, 0, 0, 0, true, printD0Input }*/
+  { ID_label, 0, 0, 0, true, printP3Input },
+  { IE_label, 0, 0, 0, true, printAllInputs }
 };
 
 // error codes and labels

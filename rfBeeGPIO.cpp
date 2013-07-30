@@ -120,10 +120,6 @@ int printInput(byte pin, byte mode){
 	Serial.println(getInput(pin,mode));
 	return OK;
 }
-//int printAllInputs(){
-//	Serial.println(getAllInputs());
-//	return OK;
-//}
 int getInput(byte pin, byte mode){
 	int retVal=0;
 	switch(mode){
@@ -151,4 +147,12 @@ int getInput(byte pin, byte mode){
 			}
 	}
 	return retVal;
+}
+int printAllInputs(){
+	char buffer[52];
+	getAllInputs(buffer);
+	Serial.println(buffer);
+	return OK;
+}
+void getAllInputs(char* buffer){
 }
