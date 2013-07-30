@@ -40,9 +40,9 @@
 
 
 void setup(){
-    Serial.begin(9600);
     if (Config.initialized() != OK)
     {
+      Serial.begin(9600);
       Serial.println("Initializing config");
 #ifdef FACTORY_SELFTEST
       if ( TestIO() != OK )
