@@ -58,6 +58,9 @@
 #define CONFIG_P0_DUTY           25 // PWM duty for P0 (XBee Pin 6/RSSI/PB1/9)
 #define CONFIG_D2_DUTY           26 // PWM duty for D2 (XBee Pin 18/PD6/6)
 #define CONFIG_D3_DUTY           27 // PWM duty for D3 (XBee Pin 17/PD5/5)
+#define CONFIG_PERIODIC_INTERVAL 28 // Interval for periodic transmission of input values
+#define CONFIG_PERIODIC_FLAGS    29 // Whether to send input values locally (bit 0), via the radio (bit 1), or both
+#define CONFIG_PERIODIC_DEST     30 // What address (or 0 for broadcast) to send input values to if _FLAGS bit 1 set
 // marker
 #define CONFIG_RFBEE_MARKER_VALUE 0xAA
 

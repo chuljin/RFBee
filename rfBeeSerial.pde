@@ -245,6 +245,7 @@ void writeSerialData(){
 
   if (result == NOTHING)
     return;
+  setRSSIOutput(rssi);
 // write to serial based on output format:
 //  0: payload only
 //  1: source, dest, payload

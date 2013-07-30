@@ -21,7 +21,7 @@
 
 
 
-#define FIRMWAREVERSION 13 // 1.2  , version number needs to fit in byte (0~255) to be able to store it into config
+#define FIRMWAREVERSION 14 // 1.2  , version number needs to fit in byte (0~255) to be able to store it into config
 //#define FACTORY_SELFTEST
 //#define DEBUG
 
@@ -76,6 +76,10 @@ void loop(){
     DEBUGPRINT("low power on")
     lowPowerOn();
     DEBUGPRINT("woke up")
+
+	byte buffer[26];
+	if(checkPeriodicInterval(buffer,serialMode))
+		transmitData(buffer,26,Config.get(CONFIG_MY_ADDR),Config.get(CONFIG_PERIODIC_DEST));
 }
 
 

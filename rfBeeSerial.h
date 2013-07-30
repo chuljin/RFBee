@@ -109,6 +109,9 @@ static char IB_label[] PROGMEM="IB";
 static char IC_label[] PROGMEM="IC";
 static char ID_label[] PROGMEM="ID";
 static char IE_label[] PROGMEM="IE";
+static char PI_label[] PROGMEM="PI";
+static char PF_label[] PROGMEM="PF";
+static char PD_label[] PROGMEM="PD";
 
 // Supported commands, Commands and parameters in ASCII
 // Example: ATDA14 means: change the RF module Destination Address to 14
@@ -180,7 +183,10 @@ static AT_Command_t atCommands[] PROGMEM =
   { IB_label, 0, 0, 0, true, printP1Input },
   { IC_label, 0, 0, 0, true, printP2Input },
   { ID_label, 0, 0, 0, true, printP3Input },
-  { IE_label, 0, 0, 0, true, printAllInputs }
+  { IE_label, 0, 0, 0, true, printAllInputs },
+  { PI_label, CONFIG_PERIODIC_INTERVAL, 3, 255, true, setPeriodicInterval },
+  { PF_label, CONFIG_PERIODIC_FLAGS, 1, 3, false, 0},
+  { PD_label, CONFIG_PERIODIC_DEST, 3, 255, false, 0},
 };
 
 // error codes and labels

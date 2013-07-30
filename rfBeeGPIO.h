@@ -30,6 +30,7 @@
 #include "debug.h"
 #include "globals.h"
 #include "Config.h"
+#include "rfBeeCore.h"
 
 #define DISABLED 0
 #define SPECIAL 1
@@ -72,10 +73,12 @@ int setP1Mode();
 int setP2Mode();
 int setP3Mode();
 int setMode(byte,byte);
+
 int setP0Duty();
 int setD2Duty();
 int setD3Duty();
 int setDuty(byte,byte,byte);
+
 int printD0Input();
 int printD1Input();
 int printD2Input();
@@ -92,5 +95,10 @@ int printP3Input();
 int printInput(byte,byte);
 int getInput(byte,byte);
 int printAllInputs();
-void getAllInputs(char*);
+void getAllInputs(int*);
+
+void setRSSIOutput(byte);
+
+int setPeriodicInterval();
+bool checkPeriodicInterval(byte*,byte);
 #endif

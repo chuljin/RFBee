@@ -66,6 +66,9 @@ void CONFIG::reset()
 	EEPROM.write(CONFIG_P0_DUTY,0);
 	EEPROM.write(CONFIG_D2_DUTY,0);
 	EEPROM.write(CONFIG_D3_DUTY,0);
+	EEPROM.write(CONFIG_PERIODIC_INTERVAL,0);
+	EEPROM.write(CONFIG_PERIODIC_FLAGS,0);
+	EEPROM.write(CONFIG_PERIODIC_DEST,0);
 }
 
 //------------------ get -----------------------------------------------

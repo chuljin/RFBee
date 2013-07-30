@@ -41,6 +41,7 @@ void setGPIO(){
 	setP0Duty();
 	setD2Duty();
 	setD3Duty();
+	setPeriodicInterval();
 }
 
 int setD0Mode() { return setMode(PIN_D0,Config.get(CONFIG_D0_MODE)); }
@@ -63,6 +64,7 @@ int setMode(byte pin, byte mode){
 				case PIN_D5:
 				case PIN_P0:
 				case PIN_P3:
+					pinMode(pin,OUTPUT);
 					break;
 				default:
 					pinMode(pin,INPUT);
@@ -117,7 +119,11 @@ int printP1Input() { return printInput(PIN_P1,Config.get(CONFIG_P1_MODE)); }
 int printP2Input() { return printInput(PIN_P2,Config.get(CONFIG_P2_MODE)); }
 int printP3Input() { return printInput(PIN_P3,Config.get(CONFIG_P3_MODE)); }
 int printInput(byte pin, byte mode){
-	Serial.println(getInput(pin,mode));
+	int input=getInput(pin,mode);
+	char msb=input>>8;
+	char lsb=input&0xff;
+	Serial.print(msb);
+	Serial.println(lsb);
 	return OK;
 }
 int getInput(byte pin, byte mode){
@@ -149,10 +155,64 @@ int getInput(byte pin, byte mode){
 	return retVal;
 }
 int printAllInputs(){
-	char buffer[52];
+	int buffer[13];
 	getAllInputs(buffer);
-	Serial.println(buffer);
+	for(int pin=0;pin<=11;pin++){
+		Serial.print(buffer[pin],DEC);
+		Serial.print(",");
+	}
+	Serial.println(buffer[12]);
 	return OK;
 }
-void getAllInputs(char* buffer){
+void getAllInputs(int* buffer){
+	buffer[0]=getInput(PIN_D0,Config.get(CONFIG_D0_MODE));
+	buffer[1]=getInput(PIN_D1,Config.get(CONFIG_D1_MODE));
+	buffer[2]=getInput(PIN_D2,Config.get(CONFIG_D2_MODE));
+	buffer[3]=getInput(PIN_D3,Config.get(CONFIG_D3_MODE));
+	buffer[4]=getInput(PIN_D4,Config.get(CONFIG_D4_MODE));
+	buffer[5]=getInput(PIN_D5,Config.get(CONFIG_D5_MODE));
+	buffer[6]=getInput(PIN_D6,Config.get(CONFIG_D6_MODE));
+	buffer[7]=getInput(PIN_D7,Config.get(CONFIG_D7_MODE));
+	buffer[8]=getInput(PIN_D8,Config.get(CONFIG_D8_MODE));
+	buffer[9]=getInput(PIN_P0,Config.get(CONFIG_P0_MODE));
+	buffer[10]=getInput(PIN_P1,Config.get(CONFIG_P1_MODE));
+	buffer[11]=getInput(PIN_P2,Config.get(CONFIG_P2_MODE));
+	buffer[12]=getInput(PIN_P3,Config.get(CONFIG_P3_MODE));
+}
+
+void setRSSIOutput(byte rssi){
+	if(Config.get(CONFIG_P0_MODE)==RSSI_PWM)
+		analogWrite(PIN_P0,rssi+128);
+}
+
+unsigned long nextInputTransmission;
+int setPeriodicInterval(){
+	nextInputTransmission=millis()+(unsigned long)(Config.get(CONFIG_PERIODIC_INTERVAL)*1000);
+	return OK;
+}
+bool checkPeriodicInterval(byte* buffer,byte serialMode){
+	bool retVal=false;
+	if(Config.get(CONFIG_PERIODIC_INTERVAL)>0){
+		if(millis()>=nextInputTransmission){
+			int ibuffer[13];
+			getAllInputs(ibuffer);
+			for (int i=0;i<=12;i++){
+				buffer[i*2]=ibuffer[i]>>8;
+				buffer[i*2+1]=ibuffer[i]&0xff;
+			}
+			byte flags=Config.get(CONFIG_PERIODIC_FLAGS);
+			if(flags&1)
+				if(serialMode==0){
+					for(int i=0;i<=25;i++){
+						Serial.write(buffer[i]);
+					}
+					Serial.println();
+				}
+			if(flags&2){
+				retVal=true;
+			}
+			setPeriodicInterval();
+		}
+	}
+	return retVal;
 }
