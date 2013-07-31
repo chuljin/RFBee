@@ -88,6 +88,7 @@ static char D5_label[] PROGMEM="D5";
 static char D6_label[] PROGMEM="D6";
 static char D7_label[] PROGMEM="D7";
 static char D8_label[] PROGMEM="D8";
+static char D9_label[] PROGMEM="D9";
 static char P0_label[] PROGMEM="P0";
 static char P1_label[] PROGMEM="P1";
 static char P2_label[] PROGMEM="P2";
@@ -104,6 +105,7 @@ static char I5_label[] PROGMEM="I5";
 static char I6_label[] PROGMEM="I6";
 static char I7_label[] PROGMEM="I7";
 static char I8_label[] PROGMEM="I8";
+static char I9_label[] PROGMEM="I9";
 static char IA_label[] PROGMEM="IA";
 static char IB_label[] PROGMEM="IB";
 static char IC_label[] PROGMEM="IC";
@@ -160,7 +162,8 @@ static AT_Command_t atCommands[] PROGMEM =
   { D5_label, CONFIG_D5_MODE, 1, 5, true, setD5Mode },
   { D6_label, CONFIG_D6_MODE, 1, 5, true, setD6Mode },
   { D7_label, CONFIG_D7_MODE, 1, 5, true, setD7Mode },
-  { D8_label, CONFIG_D8_MODE, 1, 4, true, setD8Mode },
+  { D8_label, CONFIG_D8_MODE, 1, 0, true, setD8Mode },
+  { D9_label, CONFIG_D9_MODE, 1, 4, true, setD9Mode },
   { P0_label, CONFIG_P0_MODE, 1, 6, true, setP0Mode },
   { P1_label, CONFIG_P1_MODE, 1, 4, true, setP1Mode },
   { P2_label, CONFIG_P2_MODE, 1, 4, true, setP2Mode },
@@ -179,11 +182,13 @@ static AT_Command_t atCommands[] PROGMEM =
   { I6_label, 0, 0, 0, true, printD6Input },
   { I7_label, 0, 0, 0, true, printD7Input },
   { I8_label, 0, 0, 0, true, printD8Input },
+  { I9_label, 0, 0, 0, true, printD9Input },
   { IA_label, 0, 0, 0, true, printP0Input },
   { IB_label, 0, 0, 0, true, printP1Input },
   { IC_label, 0, 0, 0, true, printP2Input },
   { ID_label, 0, 0, 0, true, printP3Input },
   { IE_label, 0, 0, 0, true, printAllInputs },
+// GPIO Periodic Input Transmission
   { PI_label, CONFIG_PERIODIC_INTERVAL, 3, 255, true, setPeriodicInterval },
   { PF_label, CONFIG_PERIODIC_FLAGS, 1, 3, false, 0},
   { PD_label, CONFIG_PERIODIC_DEST, 3, 255, false, 0},

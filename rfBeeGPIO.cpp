@@ -34,6 +34,7 @@ void setGPIO(){
 	setD6Mode();
 	setD7Mode();
 	setD8Mode();
+	setD9Mode();
 	setP0Mode();
 	setP1Mode();
 	setP2Mode();
@@ -53,11 +54,14 @@ int setD5Mode() { return setMode(PIN_D5,Config.get(CONFIG_D5_MODE)); }
 int setD6Mode() { return setMode(PIN_D6,Config.get(CONFIG_D6_MODE)); }
 int setD7Mode() { return setMode(PIN_D7,Config.get(CONFIG_D7_MODE)); }
 int setD8Mode() { return setMode(PIN_D8,Config.get(CONFIG_D8_MODE)); }
+int setD9Mode() { return setMode(PIN_D9,Config.get(CONFIG_D9_MODE)); }
 int setP0Mode() { return setMode(PIN_P0,Config.get(CONFIG_P0_MODE)); }
 int setP1Mode() { return setMode(PIN_P1,Config.get(CONFIG_P1_MODE)); }
 int setP2Mode() { return setMode(PIN_P2,Config.get(CONFIG_P2_MODE)); }
 int setP3Mode() { return setMode(PIN_P3,Config.get(CONFIG_P3_MODE)); }
 int setMode(byte pin, byte mode){
+	if(pin==-1)
+		return ERR;
 	switch(mode){
 		case SPECIAL:
 			switch(pin){
@@ -114,6 +118,7 @@ int printD5Input() { return printInput(PIN_D5,Config.get(CONFIG_D5_MODE)); }
 int printD6Input() { return printInput(PIN_D6,Config.get(CONFIG_D6_MODE)); }
 int printD7Input() { return printInput(PIN_D7,Config.get(CONFIG_D7_MODE)); }
 int printD8Input() { return printInput(PIN_D8,Config.get(CONFIG_D8_MODE)); }
+int printD9Input() { return printInput(PIN_D9,Config.get(CONFIG_D9_MODE)); }
 int printP0Input() { return printInput(PIN_P0,Config.get(CONFIG_P0_MODE)); }
 int printP1Input() { return printInput(PIN_P1,Config.get(CONFIG_P1_MODE)); }
 int printP2Input() { return printInput(PIN_P2,Config.get(CONFIG_P2_MODE)); }
@@ -128,6 +133,8 @@ int printInput(byte pin, byte mode){
 }
 int getInput(byte pin, byte mode){
 	int retVal=0;
+	if(pin==-1)
+		return 0;
 	switch(mode){
 		case DIGITAL_INPUT:
 			retVal=digitalRead(pin);
@@ -155,13 +162,13 @@ int getInput(byte pin, byte mode){
 	return retVal;
 }
 int printAllInputs(){
-	int buffer[13];
+	int buffer[14];
 	getAllInputs(buffer);
-	for(int pin=0;pin<=11;pin++){
+	for(int pin=0;pin<=12;pin++){
 		Serial.print(buffer[pin],DEC);
 		Serial.print(",");
 	}
-	Serial.println(buffer[12]);
+	Serial.println(buffer[13]);
 	return OK;
 }
 void getAllInputs(int* buffer){
@@ -174,10 +181,11 @@ void getAllInputs(int* buffer){
 	buffer[6]=getInput(PIN_D6,Config.get(CONFIG_D6_MODE));
 	buffer[7]=getInput(PIN_D7,Config.get(CONFIG_D7_MODE));
 	buffer[8]=getInput(PIN_D8,Config.get(CONFIG_D8_MODE));
-	buffer[9]=getInput(PIN_P0,Config.get(CONFIG_P0_MODE));
-	buffer[10]=getInput(PIN_P1,Config.get(CONFIG_P1_MODE));
-	buffer[11]=getInput(PIN_P2,Config.get(CONFIG_P2_MODE));
-	buffer[12]=getInput(PIN_P3,Config.get(CONFIG_P3_MODE));
+	buffer[9]=getInput(PIN_D9,Config.get(CONFIG_D9_MODE));
+	buffer[10]=getInput(PIN_P0,Config.get(CONFIG_P0_MODE));
+	buffer[11]=getInput(PIN_P1,Config.get(CONFIG_P1_MODE));
+	buffer[12]=getInput(PIN_P2,Config.get(CONFIG_P2_MODE));
+	buffer[13]=getInput(PIN_P3,Config.get(CONFIG_P3_MODE));
 }
 
 void setRSSIOutput(byte rssi){

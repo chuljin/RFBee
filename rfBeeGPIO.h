@@ -34,7 +34,7 @@
 
 #define DISABLED 0
 #define SPECIAL 1
-#define ASSOC 1
+#define ASSOC_LED 1
 #define RSSI_PWM 1
 #define STATUS 1
 #define DIGITAL_INPUT 2
@@ -51,10 +51,11 @@
 #define PIN_D5 14
 #define PIN_D6 21
 #define PIN_D7 16
-#define PIN_D8 4
+#define PIN_D8 -1
+#define PIN_D9 7
 #define PIN_P0 9
 #define PIN_P1 8
-#define PIN_P2 7
+#define PIN_P2 4
 #define PIN_P3 15
 
 void setGPIO();
@@ -68,6 +69,7 @@ int setD5Mode();
 int setD6Mode();
 int setD7Mode();
 int setD8Mode();
+int setD9Mode();
 int setP0Mode();
 int setP1Mode();
 int setP2Mode();
@@ -88,6 +90,7 @@ int printD5Input();
 int printD6Input();
 int printD7Input();
 int printD8Input();
+int printD9Input();
 int printP0Input();
 int printP1Input();
 int printP2Input();
