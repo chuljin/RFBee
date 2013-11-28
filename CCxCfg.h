@@ -2,7 +2,7 @@
 //
 //  Copyright (c) 2013 Chris Stephens <rfbee (at) chuljin.net>
 //  Author: Chris Stephens, based on the original Rfbee v1.1 firmware by Hans Klunder
-//  Version: July 29, 2013
+//  Version: November 27, 2013
 //
 //  Copyright (c) 2010 Hans Klunder <hans.klunder (at) bigfoot.com>
 //  Author: Hans Klunder, based on the original Rfbee v1.0 firmware by Seeedstudio
@@ -175,7 +175,7 @@ static const byte CCx_registerSettings[CCX_NR_OF_CONFIGS][CCX_NR_OF_REGISTERS] P
     0x23,   // FREQ2     Frequency control word, high byte.
     0x31,   // FREQ1     Frequency control word, middle byte.
     0x3B,   // FREQ0     Frequency control word, low byte.
-    0xB7,   //0xC7 MDMCFG4   Modem configuration.
+    0xB7,   //0xC7CCxCfg MDMCFG4   Modem configuration.
     0x83,   // MDMCFG3   Modem configuration.
     0x13,   // MDMCFG2   Modem configuration.
     0x22,   // MDMCFG1   Modem configuration.

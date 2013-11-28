@@ -3,7 +3,7 @@
 
 //  Copyright (c) 2013 Chris Stephens <rfbee (at) chuljin.net>
 //  Author: Chris Stephens, based on the original Rfbee v1.1 firmware by Hans Klunder
-//  Version: July 29, 2013
+//  Version: November 27, 2013
 //
 //  Copyright (c) 2010 Hans Klunder <hans.klunder (at) bigfoot.com>
 //  Author: Hans Klunder, based on the original Rfbee v1.0 firmware by Seeedstudio
@@ -85,11 +85,17 @@ int setMode(byte pin, byte mode){
 			pinMode(pin,OUTPUT);
 			digitalWrite(pin,HIGH);
 			break;
-		case ANALOG_INPUT:
-			pinMode(pin,INPUT);
-			break;
-		case PWM_OUTPUT:
-			pinMode(pin,OUTPUT);
+		case ANALOG_INPUT_OR_PWM_OUTPUT:
+			switch(pin){
+				case PIN_P0:
+				case PIN_D2:
+				case PIN_D3:
+					pinMode(pin,OUTPUT);
+					break;
+				default:
+					pinMode(pin,INPUT);
+					break;
+			}
 			break;
 		default: //e.g. DISABLED
 			pinMode(pin,INPUT);
@@ -102,7 +108,7 @@ int setP0Duty() { return setDuty(PIN_P0,Config.get(CONFIG_P0_MODE),Config.get(CO
 int setD2Duty() { return setDuty(PIN_D2,Config.get(CONFIG_D2_MODE),Config.get(CONFIG_D2_DUTY)); }
 int setD3Duty() { return setDuty(PIN_D3,Config.get(CONFIG_D3_MODE),Config.get(CONFIG_D3_DUTY)); }
 int setDuty(byte pin, byte mode, byte duty){
-	if(mode==PWM_OUTPUT){
+	if(mode==ANALOG_INPUT_OR_PWM_OUTPUT){
 		analogWrite(pin,duty);
 		return OK;
 	}
@@ -142,22 +148,23 @@ int getInput(byte pin, byte mode){
 		case DIGITAL_OUTPUT_HIGH:
 			retVal=1;
 			break;
-		case ANALOG_INPUT:
+		case ANALOG_INPUT_OR_PWM_OUTPUT:
 			if(pin>=14)
 				retVal=analogRead(pin-14);
-			break;
-		case PWM_OUTPUT:
-			switch(pin){
-				case PIN_P0:
-					retVal=Config.get(CONFIG_P0_DUTY);
-					break;
-				case PIN_D2:
-					retVal=Config.get(CONFIG_D2_DUTY);
-					break;
-				case PIN_D3:
-					retVal=Config.get(CONFIG_D3_DUTY);
-					break;
+			else{
+				switch(pin){
+					case PIN_P0:
+						retVal=Config.get(CONFIG_P0_DUTY);
+						break;
+					case PIN_D2:
+						retVal=Config.get(CONFIG_D2_DUTY);
+						break;
+					case PIN_D3:
+						retVal=Config.get(CONFIG_D3_DUTY);
+						break;
+				}
 			}
+			break;
 	}
 	return retVal;
 }

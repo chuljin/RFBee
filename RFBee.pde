@@ -3,7 +3,7 @@
 
 //  Copyright (c) 2013 Chris Stephens <rfbee (at) chuljin.net>
 //  Author: Chris Stephens, based on the original Rfbee v1.1 firmware by Hans Klunder
-//  Version: July 29, 2013
+//  Version: November 27, 2013
 //
 //  Copyright (c) 2010 Hans Klunder <hans.klunder (at) bigfoot.com>
 //  Author: Hans Klunder, based on the original Rfbee v1.0 firmware by Seeedstudio
@@ -21,7 +21,7 @@
 
 
 
-#define FIRMWAREVERSION 15 // 1.5  , version number needs to fit in byte (0~255) to be able to store it into config
+#define FIRMWAREVERSION 16 // 1.6  , version number needs to fit in byte (0~255) to be able to store it into config
 //#define FACTORY_SELFTEST
 //#define DEBUG
 
