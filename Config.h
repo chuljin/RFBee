@@ -2,7 +2,7 @@
 
 //  Copyright (c) 2013 Chris Stephens <rfbee (at) chuljin.net>
 //  Author: Chris Stephens, based on the original Rfbee v1.1 firmware by Hans Klunder
-//  Version: July 29, 2013
+//  Version: November 27, 2013
 //
 //  Copyright (c) 2010 Hans Klunder <hans.klunder (at) bigfoot.com>
 //  Author: Hans Klunder, based on the original Rfbee v1.0 firmware by Seeedstudio
@@ -51,11 +51,11 @@
 #define CONFIG_D6_MODE           18 // GPIO mode for D6 (XBee Pin 16)
 #define CONFIG_D7_MODE           19 // GPIO mode for D7 (XBee Pin 12)
 #define CONFIG_D8_MODE           20 // GPIO mode for D8 (XBee Pin 9) //not connected on RFBee*/
-#define CONFIG_D9_MODE           21 // GPIO mode for 'D9' (XBee Pin 8)
+#define CONFIG_D9_MODE           21 // GPIO mode for 'D9' (XBee Pin 13/On/Sleep)
 #define CONFIG_P0_MODE           22 // GPIO mode for P0 (XBee Pin 6/RSSI)
 #define CONFIG_P1_MODE           23 // GPIO mode for P1 (XBee Pin 7)
 #define CONFIG_P2_MODE           24 // GPIO mode for P2 (XBee Pin 4)
-#define CONFIG_P3_MODE           25 // GPIO mode for 'P3' (XBee Pin 13/On/Sleep)
+#define CONFIG_P3_MODE           25 // GPIO mode for 'P3' (XBee Pin 8)
 #define CONFIG_P0_DUTY           26 // PWM duty for P0 (XBee Pin 6/RSSI/PB1/9)
 #define CONFIG_D2_DUTY           27 // PWM duty for D2 (XBee Pin 18/PD6/6)
 #define CONFIG_D3_DUTY           28 // PWM duty for D3 (XBee Pin 17/PD5/5)

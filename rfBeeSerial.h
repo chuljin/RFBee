@@ -3,7 +3,7 @@
 
 //  Copyright (c) 2013 Chris Stephens <rfbee (at) chuljin.net>
 //  Author: Chris Stephens, based on the original Rfbee v1.1 firmware by Hans Klunder
-//  Version: July 29, 2013
+//  Version: November 27, 2013
 //
 //  Copyright (c) 2010 Hans Klunder <hans.klunder (at) bigfoot.com>
 //  Author: Hans Klunder, based on the original Rfbee v1.0 firmware by Seeedstudio
@@ -156,17 +156,17 @@ static AT_Command_t atCommands[] PROGMEM =
 // GPIO Config
   { D0_label, CONFIG_D0_MODE, 1, 5, true, setD0Mode },
   { D1_label, CONFIG_D1_MODE, 1, 5, true, setD1Mode },
-  { D2_label, CONFIG_D2_MODE, 1, 6, true, setD2Mode },
-  { D3_label, CONFIG_D3_MODE, 1, 6, true, setD3Mode },
+  { D2_label, CONFIG_D2_MODE, 1, 5, true, setD2Mode },
+  { D3_label, CONFIG_D3_MODE, 1, 5, true, setD3Mode },
   { D4_label, CONFIG_D4_MODE, 1, 5, true, setD4Mode },
   { D5_label, CONFIG_D5_MODE, 1, 5, true, setD5Mode },
   { D6_label, CONFIG_D6_MODE, 1, 5, true, setD6Mode },
   { D7_label, CONFIG_D7_MODE, 1, 5, true, setD7Mode },
-  { D8_label, CONFIG_D8_MODE, 1, 0, true, setD8Mode },
-  { D9_label, CONFIG_D9_MODE, 1, 4, true, setD9Mode },
-  { P0_label, CONFIG_P0_MODE, 1, 6, true, setP0Mode },
-  { P1_label, CONFIG_P1_MODE, 1, 4, true, setP1Mode },
-  { P2_label, CONFIG_P2_MODE, 1, 4, true, setP2Mode },
+  { D8_label, CONFIG_D8_MODE, 1, 5, true, setD8Mode },
+  { D9_label, CONFIG_D9_MODE, 1, 5, true, setD9Mode },
+  { P0_label, CONFIG_P0_MODE, 1, 5, true, setP0Mode },
+  { P1_label, CONFIG_P1_MODE, 1, 5, true, setP1Mode },
+  { P2_label, CONFIG_P2_MODE, 1, 5, true, setP2Mode },
   { P3_label, CONFIG_P3_MODE, 1, 5, true, setP3Mode },
 // GPIO PWM Output
   { M0_label, CONFIG_P0_DUTY, 3, 255, true, setP0Duty },

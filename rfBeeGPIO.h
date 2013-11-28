@@ -3,7 +3,7 @@
 
 //  Copyright (c) 2013 Chris Stephens <rfbee (at) chuljin.net>
 //  Author: Chris Stephens, based on the original Rfbee v1.1 firmware by Hans Klunder
-//  Version: July 29, 2013
+//  Version: November 27, 2013
 //
 //  Copyright (c) 2010 Hans Klunder <hans.klunder (at) bigfoot.com>
 //  Author: Hans Klunder, based on the original Rfbee v1.0 firmware by Seeedstudio
@@ -37,11 +37,10 @@
 #define ASSOC_LED 1
 #define RSSI_PWM 1
 #define STATUS 1
-#define DIGITAL_INPUT 2
-#define DIGITAL_OUTPUT_LOW 3
-#define DIGITAL_OUTPUT_HIGH 4
-#define ANALOG_INPUT 5
-#define PWM_OUTPUT 6
+#define ANALOG_INPUT_OR_PWM_OUTPUT 2
+#define DIGITAL_INPUT 3
+#define DIGITAL_OUTPUT_LOW 4
+#define DIGITAL_OUTPUT_HIGH 5
 
 #define PIN_D0 18
 #define PIN_D1 19
@@ -52,11 +51,11 @@
 #define PIN_D6 21
 #define PIN_D7 16
 #define PIN_D8 -1
-#define PIN_D9 7
+#define PIN_D9 15
 #define PIN_P0 9
 #define PIN_P1 8
 #define PIN_P2 4
-#define PIN_P3 15
+#define PIN_P3 7
 
 void setGPIO();
 
