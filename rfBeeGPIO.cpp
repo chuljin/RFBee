@@ -209,16 +209,16 @@ bool checkPeriodicInterval(byte* buffer,byte serialMode){
 	bool retVal=false;
 	if(Config.get(CONFIG_PERIODIC_INTERVAL)>0){
 		if(millis()>=nextInputTransmission){
-			int ibuffer[13];
+			int ibuffer[14];
 			getAllInputs(ibuffer);
-			for (int i=0;i<=12;i++){
+			for (int i=0;i<=13;i++){
 				buffer[i*2]=ibuffer[i]>>8;
 				buffer[i*2+1]=ibuffer[i]&0xff;
 			}
 			byte flags=Config.get(CONFIG_PERIODIC_FLAGS);
 			if(flags&1)
 				if(serialMode==0){
-					for(int i=0;i<=25;i++){
+					for(int i=0;i<=27;i++){
 						Serial.write(buffer[i]);
 					}
 					Serial.println();
